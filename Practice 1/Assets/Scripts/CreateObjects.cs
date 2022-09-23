@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +15,6 @@ public class CreateObjects : MonoBehaviour
     }
     public void CreateCube(int nums)
     {
-        Debug.Log(nums);
         for(int i = 0; i < nums; i++)
         {
             Instantiate(obj, new Vector3(RandomNumber(), 5, RandomNumber()), Quaternion.Euler(0, 0, 0));
