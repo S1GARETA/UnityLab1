@@ -36,6 +36,41 @@
 11. При столкновении Cube должен менять свой цвет на зелёный, а при
 завершении столкновения обратно на красный.
 
+### Подготовка
+Перед началом выполнения всех заданий, я решил создать меню с тремя кнопками - 3 задания. Сделано это было с целью, чтобы удобнее переключаться между заданиями, так как для каждого задания была создана отдельная сцена.
+
+![Меню](https://github.com/S1GARETA/UnityLab1/blob/main/Demo%20files/Menu.jpg)
+
+### Выполнение основного задания
+На первой сцене было создано 3 объекта: Plane, Cube, Sphere. Для объекта Sphere был установлен Collider в режиме триггера. Для объекта Cube был применён материал красного цвета, а так же компонент RigidBody в режиме гравитации, чтобы у него появилась физика. Чтобы Cube не проваливался под Plane, объекту Plane также был добавлен компонент RigidBody, но уже в режиме кинематики.
+Дальше, для объекта Sphere был написан скрипт [SphereCollisions](https://github.com/S1GARETA/UnityLab1/blob/main/Practice%201/Assets/Scripts/SphereCollisions.cs). Работа которого, заключается в том, чтобы при столкновении с объектом Cube в консоль выводилось сообщение, что произошло столкновение. И Cube менял цвет с красного на зелёный, когда произошло столкновение и обратно на красный, когда оно завершилось.
+``` cs
+using UnityEngine;
+
+public class SphereCollisions : MonoBehaviour
+{
+    private void OnTriggerEnter(Collider other) 
+    {
+        if (other.gameObject.name == "Cube") 
+        {
+            Debug.Log("Произошло столкновение с " + other.gameObject.name);
+            other.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+        }
+    }
+
+    private void OnTriggerExit(Collider other) 
+    {
+        if (other.gameObject.name == "Cube")
+        {
+            Debug.Log("Завершили столкновение с " + other.gameObject.name);
+            other.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+        }
+    }
+}
+```
+![gif](https://github.com/S1GARETA/UnityLab1/blob/main/Demo%20files/Task1.gif)
+![ConsoleLog](https://github.com/S1GARETA/UnityLab1/blob/main/Demo%20files/ConsoleLog.jpg)
+
 
 ## Задание 2
 ### Продемонстрируйте на сцене в Unity следующее:
